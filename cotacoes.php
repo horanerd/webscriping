@@ -6,7 +6,7 @@ $real = webscript("https://br.investing.com/currencies/usd-brl", './/span[@data-
 $real = str_replace(",", ".", $real);
 $real = (float)$real;
 
-echo "<h1> Cotação do Dolar é R$ " . number_format($real, 2, ',', ' ') . "</h1>" . PHP_EOL;
+echo "<h1> Cotação do Dolar é R$ " . number_format($real, 2, ',', '.') . "</h1>" . PHP_EOL;
 
 /* Cotação Bitcoin */
 $btc = "https://www.infomoney.com.br/cotacoes/bitcoin-btc/";
@@ -16,6 +16,8 @@ $array = (explode(" ", $bitcoin));
 $ponto = str_replace('.', '', $array[36]);
 $virgula = str_replace(',', '.', $ponto);
 $cotacao = str_replace('.', ',', $ponto);
+$cotacao = (float)$cotacao;
+$cotacao = number_format($cotacao, 2, ',', '.');
 
 echo "<h1> Cotação do Bitcoin é R$ " . $cotacao . "</h1>" . PHP_EOL;
 
@@ -27,6 +29,8 @@ $array = (explode(" ", $ethereum));
 $ponto = str_replace('.', '', $array[36]);
 $virgula = str_replace(',', '.', $ponto);
 $cotacao = str_replace('.', ',', $ponto);
+$cotacao = (float)$cotacao;
+$cotacao = number_format($cotacao, 2, ',', '.');
 echo "<h1>Cotação do Ethereum é R$ " . $cotacao . "</h1>"  . PHP_EOL;
 
 /* Minha carteira */
@@ -38,5 +42,5 @@ $array = str_replace("1", "", $poligon);
 $dolar = str_replace("$", "", $array);
 $dolar = (float)$dolar;
 $dolar = $dolar * $real;
-$dolar = number_format($dolar, 2, ',', ' ');
+$dolar = number_format($dolar, 2, ',', '.');
 echo "<h1>Cotação minha carteira  R$ " . $dolar . " </h1>" . PHP_EOL;
